@@ -5,6 +5,7 @@ import { Button } from "./../nurui/button.jsx";
 import { FileText, Sparkles, Check } from "lucide-react";
 import { FloatingPaper } from "./../nurui/floating-paper.jsx";
 import { RoboAnimation } from "./../nurui/robo-animation.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ResearchHero() {
@@ -30,6 +31,7 @@ export default function ResearchHero() {
 
 function LeftContent() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouse = (e) => setMouse({ x: e.clientX, y: e.clientY });
@@ -91,13 +93,16 @@ function LeftContent() {
         className="mt-10 flex flex-col sm:flex-row items-center gap-4"
         style={{ transform: `translate(${calcParallax(70).x}px, ${calcParallax(70).y}px)` }}
       >
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6">
-          <FileText className="mr-2 h-5 w-5" />
-          Describe Your Problem
-        </Button>
+        <Button
+      className="bg-purple-600 hover:bg-purple-700 text-white px-6 flex items-center cursor-pointer transition"
+      onClick={() => navigate("/prompt")} 
+    >
+      <FileText className="mr-2 h-5 w-5" />
+      Describe Your Problem
+    </Button>
         <Button
           variant="outline"
-          className="text-white border-purple-500 hover:bg-purple-500/20"
+          className="text-white border-purple-500 hover:bg-purple-500/20 cursor-pointer transition"
         >
           <Sparkles className="mr-2 h-5 w-5" />
           Generate Sample Flowchart
