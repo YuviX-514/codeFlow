@@ -53,7 +53,7 @@ const FloatingNavbarMobile = ({ items, visible }) => {
                 <motion.a
                   key={item.title}
                   href={item.href}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900 shadow-lg hover:scale-110 transition-transform"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 shadow-lg hover:scale-110 transition-transform"
                   whileHover={{ scale: 1.2 }}
                 >
                   <div className="h-6 w-6">{item.icon}</div>
@@ -64,9 +64,9 @@ const FloatingNavbarMobile = ({ items, visible }) => {
 
           <button
             onClick={() => setOpen(!open)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
+            className="flex h-12 w-12 items-center justify-center rounded-ful bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
           >
-            <IconLayoutNavbarCollapse className="h-6 w-6 text-neutral-500 dark:text-neutral-400" />
+            <IconLayoutNavbarCollapse className="h-6 w-6 text-neutral-400" />
           </button>
         </motion.div>
       )}
@@ -129,7 +129,7 @@ const NavbarIcon = ({ mouseX, title, icon, href }) => {
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="flex items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800 shadow-lg cursor-pointer"
+        className="flex items-center justify-center rounded-full bg-neutral-800 shadow-lg cursor-pointer"
       >
         <motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center">
           {icon}
@@ -142,7 +142,7 @@ const NavbarIcon = ({ mouseX, title, icon, href }) => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 6 }}
-              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-max rounded-md bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-900 px-3 py-1 text-xs text-neutral-700 dark:text-white shadow-md whitespace-nowrap"
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-max rounded-md bg-neutral-800 border border-gray-200 dark:border-neutral-900 px-3 py-1 text-xs text-neutral-700 dark:text-white shadow-md whitespace-nowrap"
             >
               {title}
             </motion.div>
