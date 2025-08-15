@@ -8,15 +8,11 @@ export const FloatingDock = ({ items }) => {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
 
-  // Scroll logic: hide on scroll down, show on scroll up
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
       const direction = current - scrollYProgress.getPrevious();
-      if (current < 0.05) {
-        setVisible(true);
-      } else {
-        setVisible(direction < 0); // true if scrolling up
-      }
+      if (current < 0.05) setVisible(true);
+      else setVisible(direction < 0);
     }
   });
 
@@ -28,7 +24,6 @@ export const FloatingDock = ({ items }) => {
   );
 };
 
-// -------------------- MOBILE NAVBAR -------------------- //
 const FloatingNavbarMobile = ({ items, visible }) => {
   const [open, setOpen] = useState(false);
 
@@ -53,10 +48,10 @@ const FloatingNavbarMobile = ({ items, visible }) => {
                 <motion.a
                   key={item.title}
                   href={item.href}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 shadow-lg hover:scale-110 transition-transform"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
                   whileHover={{ scale: 1.2 }}
                 >
-                  <div className="h-6 w-6">{item.icon}</div>
+                  <div className="h-6 w-6 text-white">{item.icon}</div>
                 </motion.a>
               ))}
             </motion.div>
@@ -64,9 +59,9 @@ const FloatingNavbarMobile = ({ items, visible }) => {
 
           <button
             onClick={() => setOpen(!open)}
-            className="flex h-12 w-12 items-center justify-center rounded-ful bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
           >
-            <IconLayoutNavbarCollapse className="h-6 w-6 text-neutral-400" />
+            <IconLayoutNavbarCollapse className="h-6 w-6 text-white" />
           </button>
         </motion.div>
       )}
@@ -74,7 +69,6 @@ const FloatingNavbarMobile = ({ items, visible }) => {
   );
 };
 
-// -------------------- DESKTOP NAVBAR -------------------- //
 const FloatingNavbarDesktop = ({ items, visible }) => {
   const mouseX = useMotionValue(Infinity);
 
@@ -88,7 +82,7 @@ const FloatingNavbarDesktop = ({ items, visible }) => {
           transition={{ duration: 0.2 }}
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="fixed top-6 left-1/2 z-50 hidden md:flex -translate-x-1/2 items-center gap-4 rounded-2xl bg-gray-50 px-6 py-3 shadow-xl dark:bg-neutral-900 backdrop-blur-md bg-opacity-90"
+          className="fixed top-6 left-1/2 z-50 hidden md:flex -translate-x-1/2 items-center gap-4 rounded-2xl bg-neutral-800 px-6 py-3 shadow-xl backdrop-blur-md bg-opacity-90"
         >
           {items.map((item) => (
             <NavbarIcon key={item.title} mouseX={mouseX} {...item} />
@@ -99,7 +93,6 @@ const FloatingNavbarDesktop = ({ items, visible }) => {
   );
 };
 
-// -------------------- ICON ITEM -------------------- //
 const NavbarIcon = ({ mouseX, title, icon, href }) => {
   const ref = useRef(null);
   const [hovered, setHovered] = useState(false);
@@ -109,16 +102,8 @@ const NavbarIcon = ({ mouseX, title, icon, href }) => {
     return val - bounds.x - bounds.width / 2;
   });
 
-  const width = useSpring(useTransform(distance, [-150, 0, 150], [50, 80, 50]), {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  const height = useSpring(useTransform(distance, [-150, 0, 150], [50, 80, 50]), {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
+  const width = useSpring(useTransform(distance, [-150, 0, 150], [50, 80, 50]), { mass: 0.1, stiffness: 150, damping: 12 });
+  const height = useSpring(useTransform(distance, [-150, 0, 150], [50, 80, 50]), { mass: 0.1, stiffness: 150, damping: 12 });
   const widthIcon = useSpring(useTransform(distance, [-150, 0, 150], [24, 40, 24]));
   const heightIcon = useSpring(useTransform(distance, [-150, 0, 150], [24, 40, 24]));
 
@@ -129,20 +114,19 @@ const NavbarIcon = ({ mouseX, title, icon, href }) => {
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="flex items-center justify-center rounded-full bg-neutral-800 shadow-lg cursor-pointer"
+        className="flex items-center justify-center rounded-full bg-neutral-700 shadow-lg cursor-pointer"
       >
-        <motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center">
+        <motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center text-white">
           {icon}
         </motion.div>
 
-        {/* Hover label */}
         <AnimatePresence>
           {hovered && (
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 6 }}
-              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-max rounded-md bg-neutral-800 border border-gray-200 dark:border-neutral-900 px-3 py-1 text-xs text-neutral-700 dark:text-white shadow-md whitespace-nowrap"
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-max rounded-md bg-neutral-900 border border-neutral-700 px-3 py-1 text-xs text-white shadow-md whitespace-nowrap"
             >
               {title}
             </motion.div>
