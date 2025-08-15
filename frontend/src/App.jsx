@@ -6,6 +6,7 @@ import FeaturesSection from "../components/FeaturesSection.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import Prompt from "../pages/Prompt.jsx"
+import Contributors from "../components/Contributors.jsx";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
               <ResearchHero />
               <FeaturesSection />
               <HowItWorks />
+              <Contributors/>
             </div>
             <footer>
               <Footer />
