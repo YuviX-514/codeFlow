@@ -3,6 +3,7 @@ import ResearchHero from "../components/nurui/research-hero.jsx";
 import { SparklesCore } from "../components/nurui/sparkles.jsx";
 import FeaturesSection from "../components/FeaturesSection.jsx";
 import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 export default function App() {
   return (
     <section className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
@@ -26,6 +27,9 @@ export default function App() {
     <FeaturesSection />
     <HowItWorks />
   </div>
+  <footer>
+    <Footer/>
+  </footer>
 </section>
 
   );
