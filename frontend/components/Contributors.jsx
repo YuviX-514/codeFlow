@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { AnimatedTooltip } from "./ui/animated-tooltip.jsx";
+
 const people = [
   {
     id: 1,
@@ -28,11 +29,18 @@ const people = [
   },
 ];
 
-
 export default function Contributors() {
   return (
-    <div className="flex flex-row items-center justify-center mb-20 w-full size-7">
-      <AnimatedTooltip items={people} />
-    </div>
+    <section className="flex flex-col items-center justify-center mb-20 w-full">
+      {/* Heading */}
+      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8 text-center">
+        Our Contributors
+      </h2>
+
+      {/* Tooltip with avatars */}
+      <div className="flex flex-row items-center justify-center w-full">
+        <AnimatedTooltip items={people} />
+      </div>
+    </section>
   );
 }

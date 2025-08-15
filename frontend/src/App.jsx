@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import Prompt from "../pages/Prompt.jsx"
 import Contributors from "../components/Contributors.jsx";
+import Review from "../components/Review.jsx";
+
 
 export default function App() {
   return (
@@ -34,6 +36,7 @@ export default function App() {
               <FeaturesSection />
               <HowItWorks />
               <Contributors/>
+              <Review/>
             </div>
             <footer>
               <Footer />
