@@ -48,7 +48,7 @@ const FloatingNavbarMobile = ({ items, visible }) => {
                 <motion.a
                   key={item.title}
                   href={item.href}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 shadow-lg hover:scale-110 transition-transform"
                   whileHover={{ scale: 1.2 }}
                 >
                   <div className="h-6 w-6 text-white">{item.icon}</div>
@@ -59,7 +59,7 @@ const FloatingNavbarMobile = ({ items, visible }) => {
 
           <button
             onClick={() => setOpen(!open)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-800 shadow-lg hover:scale-110 transition-transform"
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 shadow-lg hover:scale-110 transition-transform"
           >
             <IconLayoutNavbarCollapse className="h-6 w-6 text-white" />
           </button>
@@ -82,7 +82,7 @@ const FloatingNavbarDesktop = ({ items, visible }) => {
           transition={{ duration: 0.2 }}
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="fixed top-6 left-1/2 z-50 hidden md:flex -translate-x-1/2 items-center gap-4 rounded-2xl bg-neutral-800 px-6 py-3 shadow-xl backdrop-blur-md bg-opacity-90"
+          className="fixed top-6 left-1/2 z-50 hidden md:flex -translate-x-1/2 items-center gap-4 rounded-2xl bg-neutral-900 px-6 py-3 shadow-xl backdrop-blur-md bg-opacity-90"
         >
           {items.map((item) => (
             <NavbarIcon key={item.title} mouseX={mouseX} {...item} />
@@ -114,7 +114,7 @@ const NavbarIcon = ({ mouseX, title, icon, href }) => {
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="flex items-center justify-center rounded-full bg-neutral-700 shadow-lg cursor-pointer"
+        className="flex items-center justify-center rounded-full bg-neutral-800 shadow-lg cursor-pointer"
       >
         <motion.div style={{ width: widthIcon, height: heightIcon }} className="flex items-center justify-center text-white">
           {icon}
@@ -126,7 +126,7 @@ const NavbarIcon = ({ mouseX, title, icon, href }) => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 6 }}
-              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-max rounded-md bg-neutral-900 border border-neutral-700 px-3 py-1 text-xs text-white shadow-md whitespace-nowrap"
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-max rounded-md bg-neutral-900 border border-neutral-900 px-3 py-1 text-xs text-white shadow-md whitespace-nowrap"
             >
               {title}
             </motion.div>
