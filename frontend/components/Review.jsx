@@ -1,101 +1,118 @@
 import React from "react";
-import { Star } from "lucide-react";
-import { motion } from "framer-motion";
 
-const reviews = [
-  { 
-    username: "Aarav Sharma", 
-    rating: 5, 
-    comment: "AI-guided flowcharts completely changed how I plan projects. MERN stack recommendation was perfect!", 
-    date: "2 days ago",
-    featureUsed: "Flowchart Generator",
-    avatar: "👨‍💻"
-  },
-  { 
-    username: "Priya Patel", 
-    rating: 4, 
-    comment: "GitHub integration caught memory leaks and suggested better documentation. Test automation could be more detailed.", 
-    date: "1 week ago",
-    featureUsed: "Code Refactoring",
-    avatar: "👩‍💻"
-  },
-  { 
-    username: "Rohan Verma", 
-    rating: 5, 
-    comment: "Staggered deployment is genius! Fixed XSS issues early thanks to security tests.", 
-    date: "3 days ago",
-    featureUsed: "Partial Deployment",
-    avatar: "🧑‍🎓"
-  },
-  { 
-    username: "Neha Gupta", 
-    rating: 4, 
-    comment: "Tech stack alternatives saved me. PostgreSQL suggestion was clear and helpful.", 
-    date: "5 days ago",
-    featureUsed: "Tech Stack Advisor",
-    avatar: "👩‍🔧"
-  },
-  { 
-    username: "Vikram Singh", 
-    rating: 3, 
-    comment: "AI over-complicated a simple todo app, but component splitting suggestions were great.", 
-    date: "1 day ago",
-    featureUsed: "Architecture Planning",
-    avatar: "👨‍🏫"
-  }
+const reviewsLeft = [
+  { id: 1, name: "Mentor", text: "Perfect tool for beginners to plan their projects step by step." },
+  { id: 2, name: "Student Dev", text: "Helped me visualize deployment flowcharts so easily!" },
+  { id: 3, name: "CoderX", text: "Makes communication in small dev teams much smoother." },
 ];
 
+const reviewsMiddle = [
+  { id: 1, name: "Anjali", text: "Loved how it suggested tech stacks based on my project idea." },
+  { id: 2, name: "Rahul", text: "Automated testing built-in? That's a lifesaver for beginners." },
+  { id: 3, name: "Karan", text: "I could deploy and cross-check changes live. Amazing!" },
+];
 
-const ReviewCard = ({ review }) => (
-  <div className="min-w-[300px] max-w-[320px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 mx-4 flex-shrink-0 border border-gray-700 hover:border-gray-600 transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)]">
-    <div className="flex items-center justify-between mb-3">
-      <span className="font-bold text-white text-lg">{review.username}</span>
-      <span className="text-gray-400 text-sm">{review.date}</span>
-    </div>
-    <div className="flex mb-3">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          fill={star <= review.rating ? "currentColor" : "none"}
-          strokeWidth={1.5}
-          className={`w-5 h-5 ${star <= review.rating ? "text-yellow-400" : "text-gray-600"}`}
-        />
-      ))}
-    </div>
-    <p className="text-gray-300 leading-relaxed">{review.comment}</p>
-  </div>
-);
+const reviewsRight = [
+  { id: 1, name: "Priya", text: "Clean interface, kept my code structured and documented." },
+  { id: 2, name: "Vikram", text: "Collaboration features made my college project shine." },
+  { id: 3, name: "Sanya", text: "Beginner-friendly but powerful enough for advanced devs." },
+];
 
-const Review = () => {
-  const repeatedReviews = [...reviews, ...reviews, ...reviews];
-
+function ReviewCard({ name, text }) {
   return (
-    <div className="relative overflow-hidden py-16">
-      <h2 className="text-4xl font-bold text-center text-white mb-12">
-        What Our <span className="text-transparent bg-clip-text bg-white">Users Say</span>
-      </h2>
-      
-      <div className="relative h-[280px]">
-        {/* First carousel */}
-        <motion.div
-          className="flex absolute top-0 left-0"
-          animate={{ x: ["0%", "-20.33%"] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 30,
-            ease: "linear",
-          }}
-        >
-          {repeatedReviews.map((review, idx) => (
-            <ReviewCard key={`first-${idx}`} review={review} />
-          ))}
-        </motion.div>
-
-       
+    <div className="relative w-96 mx-auto select-none group">
+      <div className="relative bg-gradient-to-b from-gray-900/70 to-gray-800/70 backdrop-blur-sm 
+                      rounded-2xl p-8 text-center 
+                      border border-gray-700 hover:border-cyan-400/50 transition-all duration-300 shadow-xl
+                      group-hover:shadow-cyan-400/10 group-hover:shadow-lg">
+        {/* accent line */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-0.5 bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
+        
+        <p className="text-lg text-gray-200 leading-relaxed mb-4">{text}</p>
+        <span className="text-sm font-semibold tracking-wider text-cyan-400">— {name}</span>
+        
+        {/* hover glow */}
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+             style={{ boxShadow: 'inset 0 0 16px rgba(0,255,255,0.08)' }} />
       </div>
     </div>
   );
-};
+}
 
-export default Review;
+function VerticalMarquee({ direction = "up", speed = 18, items }) {
+  const dirClass = direction === "up" ? "marquee-up" : "marquee-down";
+  return (
+    <div className="relative overflow-hidden h-[500px] w-[420px]">
+      {/* fade masks */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 z-20 bg-gradient-to-b from-[#070912] to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 z-20 bg-gradient-to-t from-[#070912] to-transparent" />
+
+      {/* scrolling track */}
+      <div
+        className={`marquee-track ${dirClass}`}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        <div className="marquee-group">
+          {items.map((r) => (
+            <ReviewCard key={`A-${r.id}`} name={r.name} text={r.text} />
+          ))}
+        </div>
+        <div className="marquee-group" aria-hidden>
+          {items.map((r) => (
+            <ReviewCard key={`B-${r.id}`} name={r.name} text={r.text} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ThreeMarquees() {
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center pt- 30 p-8 pb-35 relative">
+      {/* subtle grid pattern */}
+      <div className="pointer-events-none absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+      
+      {/* radial gradient */}
+      <div className="pointer-events-none absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,rgba(0,180,216,0.1)_0%,transparent_70%)]" />
+
+      {/* 🏷️ Heading */}
+      <div className="relative z-10 text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          What Developers Say
+        </h2>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          Real experiences from students, mentors, and devs using our platform.
+        </p>
+      </div>
+
+      {/* Three columns */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
+        <VerticalMarquee direction="up" speed={20} items={reviewsLeft} />
+        <VerticalMarquee direction="down" speed={24} items={reviewsMiddle} />
+        <VerticalMarquee direction="up" speed={22} items={reviewsRight} />
+      </div>
+
+      <style>{`
+        .marquee-track {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+        .marquee-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+        }
+        @keyframes scroll-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+        @keyframes scroll-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+        .marquee-up   { animation-name: scroll-up; }
+        .marquee-down { animation-name: scroll-down; }
+      `}</style>
+    </div>
+  );
+}
