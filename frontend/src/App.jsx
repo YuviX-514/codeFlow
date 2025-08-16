@@ -8,6 +8,7 @@ import Footer from "../components/Footer.jsx";
 import Prompt from "../pages/Prompt.jsx"
 import Contributors from "../components/Contributors.jsx";
 import Review from "../components/Review.jsx";
+import Github from "../components/GitHub.jsx";
 
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
               <FeaturesSection />
               <HowItWorks />
               <Contributors/>
+              {/* <Github/> */}
               <Review/>
             </div>
             <footer>

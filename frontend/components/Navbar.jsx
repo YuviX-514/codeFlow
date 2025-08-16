@@ -17,7 +17,7 @@ export default function Navbar() {
     { title: "Components", icon: <IconNewSection className="h-full w-full  dark:text-neutral-300" />, href: "#" },
     { title: "Changelog", icon: <IconExchange className="h-full w-full  dark:text-neutral-300" />, href: "#" },
     { title: "Twitter", icon: <IconBrandX className="h-full w-full  dark:text-neutral-300" />, href: "#" },
-    { title: "GitHub", icon: <IconBrandGithub className="h-full w-full  dark:text-neutral-300" />, href: "#" },
+    { title: "GitHub", icon: <IconBrandGithub className="h-full w-full  dark:text-neutral-300" />, href: "https://github.com/YuviX-514/codeFlow" },
   ];
 
   return <FloatingDock items={links} />;
