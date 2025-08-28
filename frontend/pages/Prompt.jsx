@@ -42,8 +42,8 @@ export default function ProjectPrompt({ onGenerate }) {
     },
     {
       id: "docs",
-      title: "Documentation Templates",
-      desc: "Create starter files for your project docs.",
+      title: "Bash Commands",
+      desc: "Receive essential setup commands.",
     },
   ];
 
